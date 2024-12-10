@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            height: 90vh;
+            background-color: rgb(177, 202, 230);
+            background-image: url(/4739957.jpg);
+            background-size: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        *{ margin: 0; padding: 0; }
+        img { width: 100vw; }
+        .snow_wrap .snow_div {
+            position: fixed;
+            top: -10%;
+            z-index: 9999;
+            color: #fff;
+            text-shadow : 0 0 5px rgba(0, 0, 0, 0.25);
+            animation: snow_shake 3s ease-in-out infinite;  
+            user-select: none;
+            font-size: 4vw;
+        }
+        .snow_wrap .snow_div p { animation: snow_fall 10s linear infinite; }
+        .snow_wrap .snow_div:nth-of-type(0) { left: 0%; animation-delay: 0s; }
+        .snow_wrap .snow_div:nth-of-type(0) p { animation-delay: 0s; }
+        .snow_wrap .snow_div:nth-of-type(1) { left: 10%; animation-delay: 1s; }
+        .snow_wrap .snow_div:nth-of-type(1) p { animation-delay: 1s; }
+        .snow_wrap .snow_div:nth-of-type(2) { left: 20%; animation-delay: 0.5s; }
+        .snow_wrap .snow_div:nth-of-type(2) p { animation-delay: 6s; }
+        .snow_wrap .snow_div:nth-of-type(3) { left: 30%; animation-delay: 2s; }
+        .snow_wrap .snow_div:nth-of-type(3) p { animation-delay: 4s; }
+        .snow_wrap .snow_div:nth-of-type(4) { left: 40%; animation-delay: 2s; }
+        .snow_wrap .snow_div:nth-of-type(4) p { animation-delay: 2s; }
+        .snow_wrap .snow_div:nth-of-type(5) { left: 50%; animation-delay: 3s; }
+        .snow_wrap .snow_div:nth-of-type(5) p { animation-delay: 8s; }
+        .snow_wrap .snow_div:nth-of-type(6) { left: 60%; animation-delay: 2s; }
+        .snow_wrap .snow_div:nth-of-type(6) p { animation-delay: 6s; }
+        .snow_wrap .snow_div:nth-of-type(7) { left: 70%; animation-delay: 1s; }
+        .snow_wrap .snow_div:nth-of-type(7) p { animation-delay: 2.5s; }
+        .snow_wrap .snow_div:nth-of-type(8) { left: 80%; animation-delay: 0s; }
+        .snow_wrap .snow_div:nth-of-type(8) p { animation-delay: 1s; }
+        .snow_wrap .snow_div:nth-of-type(9) { left: 90%; animation-delay: 1.5s; }
+        .snow_wrap .snow_div:nth-of-type(9) p { animation-delay: 3s; }
+        .snow_wrap .snow_div:nth-of-type(10) { left: 25%; animation-delay: 0.5s; }
+        .snow_wrap .snow_div:nth-of-type(10) p { animation-delay: 2s; }
+        .snow_wrap .snow_div:nth-of-type(11) { left: 65%; animation-delay: 2.5s; }
+        .snow_wrap .snow_div:nth-of-type(11) p { animation-delay: 4s; }
+        .snow_wrap .snow_div:nth-of-type(12) { left: 85%; animation-delay: 2s; }
+        .snow_wrap .snow_div:nth-of-type(12) p { animation-delay: 7.5s; }
+        .snow_wrap .snow_div:nth-of-type(13) { left: 5%; animation-delay: 0s; }
+        .snow_wrap .snow_div:nth-of-type(13) p { animation-delay: 2.5s; }
+        .snow_wrap .snow_div:nth-of-type(14) { left: 45%; animation-delay: 1.5s; }
+        .snow_wrap .snow_div:nth-of-type(14) p { animation-delay: 3.5s; }
+        .snow_wrap .snow_div:nth-of-type(15) { left: 75%; animation-delay: 1s; }
+        .snow_wrap .snow_div:nth-of-type(15) p { animation-delay: 2s; }
+        .snow_wrap .snow_div:nth-of-type(16) { left: 35%; animation-delay: 2.5s; }
+        .snow_wrap .snow_div:nth-of-type(16) p { animation-delay: 4.5s; }
+        .snow_wrap .snow_div:nth-of-type(17) { left: 15%; animation-delay: 1s; }
+        .snow_wrap .snow_div:nth-of-type(17) p { animation-delay: 3s; }
+        .snow_wrap .snow_div:nth-of-type(18) { left: 95%; animation-delay: 0s; }
+        .snow_wrap .snow_div:nth-of-type(18) p { animation-delay: 2s; }
+
+        @keyframes snow_shake {
+            0% {
+                transform: translateX(0px);
+            }
+            50% {
+                transform: translateX(80px);
+            }
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        @keyframes snow_fall {
+            0% {
+                transform: translateY(0vh);
+            }
+            100% {
+                transform: translateY(110vh);
+            }
+        }
+
+        
+        .chat-box {
+            box-shadow: 0px 0px 30px rgba(0,0,0,0.5);
+            border-radius: 15px;
+            padding: 10px;
+            max-width: 500px;
+            margin: auto;
+            background-color: #f9f9f9;
+        }
+        .message {
+            margin: 5px 0;
+        }
+        .user {
+            font-weight: bold;
+            color: blue;
+        }
+        .bot {
+            font-weight: bold;
+            color: green;
+        }
+        .key-topic {
+            font-weight: bold;
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        #messageInput{
+            border: none;
+            height: 20px;
+            border-radius: 5px;
+            background-color: rgb(224, 224, 224);
+        }
+        button{
+            background-color: rgb(58, 58, 58);
+            color: rgb(255,255,255);
+            border-radius: 5px;
+            border: none;
+            width: 10%;
+            height: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="snow_wrap">
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+        <div class="snow_div"><p>❅</p></div>
+      </div>
+    <div class="chat-box">
+        <div class="key-topic" id="keyTopic">Loading...</div> <!-- 대표 키워드 표시 영역 -->
+        <div id="chat"></div>
+        <input type="text" id="messageInput" placeholder=" 궁금하신점 마음껏 물어봐주세요!" style="width: 75%;" onkeydown="handleKeyPress(event)">
+        <button onclick="sendMessage()">Send</button>
+        <button onclick="searchMessage()">Search</button>
+    </div>
+
+    <script>
+        // 서버에서 대표 키워드 가져오기
+        fetch('/keytopic')
+            .then(response => response.json())
+            .then(data => {
+                const keyTopicDiv = document.getElementById('keyTopic');
+                keyTopicDiv.textContent = `대표 키워드: ${data.keytopic}`;
+            })
+            .catch(error => {
+                const keyTopicDiv = document.getElementById('keyTopic');
+                keyTopicDiv.textContent = "대표 키워드 로드 실패";
+            });
+
+        function searchMessage(){
+            const input = document.getElementById('messageInput').value;
+            if(input === "") return
+            location.href = `https://www.google.com/search?q=${input}`;
+        }
+
+        // 메시지 전송 함수
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const chatBox = document.getElementById('chat');
+            const userMessage = input.value;
+
+            if (!userMessage.trim()) return;
+
+            // 사용자 메시지 추가
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user';
+            userDiv.textContent = 'You: ' + userMessage;
+            chatBox.appendChild(userDiv);
+
+            // 입력 초기화
+            input.value = '';
+
+            // 서버에 메시지 전송
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userMessage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botMessage = data.message || data.error;
+                const botDiv = document.createElement('div');
+                botDiv.className = 'message bot';
+                botDiv.textContent = 'Bot: ' + botMessage;
+                chatBox.appendChild(botDiv);
+
+                // 스크롤을 아래로 이동
+                chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch(error => {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'message bot';
+                errorDiv.textContent = 'Bot: Error occurred!';
+                chatBox.appendChild(errorDiv);
+            });
+        }
+
+        // Enter 키 처리 함수
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+                event.preventDefault(); // 기본 Enter 동작 방지
+            }
+        }
+    </script>
+</body>
+</html>
